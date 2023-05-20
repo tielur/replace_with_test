@@ -13,8 +13,14 @@ defmodule ReplaceWithTest do
 
   """
   def hello do
-    "test/images/Kip_small.jpg"
-    |> Image.open!()
-    |> Image.replace_color(replace_with: :white)
+    small_kip = Image.open!("test/images/Kip_small.jpg")
+
+    texts = [
+      {Image.Text.text!("hello", text_fill_color: :darkslategray, padding: 10),
+       x: :center, y: :middle},
+      {Image.Text.text!("world", text_fill_color: :darkslategray, padding: 10), dy: 12}
+    ]
+
+    Image.compose!(small_kip, texts)
   end
 end
